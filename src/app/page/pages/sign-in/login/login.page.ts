@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from "./../../../../services/authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
-        this.router.navigate(['home']);
+        this.router.navigate(['dashboard']);
         // if(this.authService.isEmailVerified) {
         //   this.router.navigate(['dashboard']);          
         // } else {

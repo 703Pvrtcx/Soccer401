@@ -1,64 +1,30 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './menu/tabs/tabs.page';
-import { MapsPage } from './page/maps/maps.page';
-import  { LeafletPage } from './page/leaflet/leaflet.page';
 
 const routes: Routes = [
+   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+    //Court Count Routing
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'registration',
+    loadChildren: () => import('./page/pages/sign-in/registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: 'verify-email',
+    loadChildren: () => import('./page/pages/sign-in/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./page/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./page/pages/sign-in/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./menu/tabs/tabs.module').then( m => m.TabsPageModule)
+    path: 'dashboard',
+    loadChildren: () => import('./page/pages/sign-in/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
-  {
-    path: 'leaflet',
-    loadChildren: () => import('./page/leaflet/leaflet.module').then( m => m.LeafletPageModule)
-  },
-  {
-    path: 'tabs', component: TabsPage, children: [
-      {
-        path: 'detail',
-        loadChildren: () => import('./page/page/page.module').then( m => m.PagePageModule)
-      },
-      {
-        path: 'details',
-        loadChildren: () => import('./page/details/details.module').then( m => m.DetailsPageModule)
-      },
-      {
-        path: 'profile',
-        loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule)
-      },
-      {
-        path: 'notifications',
-        loadChildren: () => import('./page/notifications/notifications.module').then( m => m.NotificationsPageModule)
-      },
-      {
-        path: 'settings',
-        loadChildren: () => import('./page/settings/settings.module').then( m => m.SettingsPageModule)
-      },
-      {
-        path: 'maps',
-        loadChildren: () => import('./page/maps/maps.module').then( m => m.MapsPageModule)
-      },
-      {
-        path: 'leaflet',
-        loadChildren: () => import('./page/leaflet/leaflet.module').then( m => m.LeafletPageModule)
-      },
-
-    ]
-  },  
+  
 ];
 
 @NgModule({

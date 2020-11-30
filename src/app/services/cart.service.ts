@@ -1,52 +1,78 @@
 import { Injectable } from '@angular/core';
+import { TEAM_MOCK } from 'src/app/mocks/teamMock';
  
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
  
-  private data = [
-    {
-      category: 'Kota',
-      expanded: true,
-      products: [
-        { id: 0, name: 'Salami', price: '8' },
-        { id: 1, name: 'Classic', price: '5' },
-        { id: 2, name: 'Tuna', price: '9' },
-        { id: 3, name: 'Hawai', price: '7' }
-      ]
-    },
-    {
-      category: 'Nyama',
-      products: [
-        { id: 4, name: 'Mac & Cheese', price: '8' },
-        { id: 5, name: 'Bolognese', price: '6' }
-      ]
-    },
-    {
-      category: 'Salad',
-      products: [
-        { id: 6, name: 'Ham & Egg', price: '8' },
-        { id: 7, name: 'Basic', price: '5' },
-        { id: 8, name: 'Ceaser', price: '9' }
-      ]
-    }
-  ];
+  
  
-  private cart = [];
- 
+  statsA = [];
+  statsB = [];
+
+  teamA  = {} as Team;
+  teamB = {} as Team; 
+  
+  teamAStats = {} as Team[];
+  teamBStats = {} as Team[];
   constructor() { }
- 
-  getProducts() {
-    return this.data;
+
+
+  addNewTeamName1(name: string){
+    this.teamA.name = name;
   }
- 
-  getCart() {
-    return this.cart;
+  addNewTeamName2(name: string){
+    this.teamB.name = name;
   }
- 
-  addProduct(product) {
-    this.cart.push(product);
+  add(team1:Team, team2: Team){
+    this.teamA = team1;
+    this.teamB = team2;
   }
- 
+  addNewTeam(team){
+    this.teamA.name = team.name;
+    this.teamA.scoreCount = team.scoreCount;
+    this.teamA.yellowCard = team.yellowCard;
+    this.teamA.redCard = team.redCard;
+    this.teamA.offSide = team.offSide;
+  }
+  getNewTeam(){
+    return this.teamA;
+  }
+  getStat1(){
+    return this.teamAStats;
+  }
+  getStat2(){
+    return this.teamBStats;
+  }
+  addStatisticsA(team){
+    this.statsA.push({
+        name: team.name,
+        scoreCount: team.scoreCount,
+        yellowCard: team.yellowCard,
+        redCard: team.redCard,
+        offSide: team.offSide
+      });
+  }
+  addStatisticsB(team){
+    this.statsB.push({
+        name: team.name,
+        scoreCount: team.scoreCount,
+        yellowCard: team.yellowCard,
+        redCard: team.redCard,
+        offSide: team.offSide
+      });
+  }
+  getStatisticsA(){
+    return this.statsA;
+  }
+  getStatisticsB(){
+    return this.statsB;
+  }
+  getTeamA() {
+   return this.teamA;
+  }
+  getTeamB(){
+    return this.teamB
+  }
 }

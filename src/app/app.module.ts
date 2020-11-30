@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { environment } from '../environments/environment';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(), 
-    AngularFireAuthModule, AngularFireStorageModule, 
+    AngularFireAuthModule, AngularFireStorageModule, FormsModule,ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
