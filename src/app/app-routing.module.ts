@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
    {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'court-view',
     pathMatch: 'full'
   },
     //Court Count Routing
@@ -23,6 +23,14 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./page/pages/sign-in/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'court-view',
+    loadChildren: () => import('./page/pages/court-counter/court-view/court-view.module').then( m => m.CourtViewPageModule)
+  },
+  {
+    path: 'court-stats',
+    loadChildren: () => import('./page/pages/court-counter/court-stats/court-stats.module').then( m => m.CourtStatsPageModule)
   },
   
 ];
