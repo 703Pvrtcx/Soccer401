@@ -10,35 +10,26 @@ import { CourterService } from 'src/app/services/courter.service';
   styleUrls: ['./court-view.page.scss'],
 })
 export class CourtViewPage implements OnInit {
-
+  public teamNameNotSelected: boolean;
   teamName1: string;
   teamName2: string;
-
-   public teamNameNotSelected: boolean;
   endGame: boolean;
-  teamA = {} as Team;
-  teamB = {} as Team;
 
+  
   teams = [];
+
   constructor(private router:Router, private courtDao: CourterService) {
     this.teamNameNotSelected = true;
     this.endGame =false;
     this.teams = this.courtDao.getClub();
-    this.teams[0].name = 'The Blue Team';
-    this.teams[1].name = "The Red Team";
+    this.teamName1= 'Pirates';
+    this.teamName2 = 'Sundowns';
    }
   ngOnInit() {
-    this.teams = this.courtDao.getClub();
-    console.log(this.teams[0]);
   }
   setTeamName(){
     this.teams[0].name = this.teamName1;
     this.teams[1].name = this.teamName2;
-  }
-  addTeams(){
-    //Adding to the statistics Array we going to use throughout our program
-    this.courtDao.addTeam(this.teams);
-    console.log(this.courtDao.getTeam());
     this.teamNameNotSelected = false;
   }
   increaseSomething(i:number){
@@ -58,10 +49,11 @@ export class CourtViewPage implements OnInit {
     this.teams[i].offSide +=1;
   }
   StopMatch(){
-    this.endGame = true;
+    this.courtDao.addTeam(this.teams[0]);
+    this.courtDao.addTeam(this.teams[1]);
+    this.viewStats();
   }
   viewStats(){
     this.router.navigateByUrl('court-stats');
   }
-
 }

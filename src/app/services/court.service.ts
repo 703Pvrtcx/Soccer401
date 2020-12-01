@@ -19,7 +19,6 @@ export class CourtService {
   constructor() { 
   }
  
-
   addNewTeamName1(name: string){
     this.teamA.name = name;
   }

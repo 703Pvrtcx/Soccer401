@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourtService } from 'src/app/services/court.service';
+import { CourterService } from 'src/app/services/courter.service';
 @Component({
   selector: 'app-court-stats',
   templateUrl: './court-stats.page.html',
@@ -16,24 +17,15 @@ export class CourtStatsPage implements OnInit {
 
   teamObject = {} as Team;
 
-  constructor(private cartDao: CourtService) {
-
-    this.teamAr= this.cartDao.statsA;
-    this.teamBr = this.cartDao.statsB;
-
-    this.teamA = this.cartDao.teamA;
-    this.teamB  = this.cartDao.teamB;
-
-    console.log('Team ', this.teamAr );
-    console.log('Team ', this.teamBr );
-
-    this.teamAr = this.cartDao.getStatisticsA();
-    this.teamBr = this.cartDao.getStatisticsB();
-
+  teams= [];
+  stats = [];
+  constructor(private cartDao: CourtService,private courtDao:CourterService ) {
    }
   ngOnInit() {
-    this.teamAr = this.cartDao.getStatisticsA();
-    this.teamBr = this.cartDao.getStatisticsB();
+ 
+    this.teams = this.courtDao.teamArray;
+    //this.teams = this.courtDao.getTeam();
+    console.log("Team init",this.teams);
   }
 }
 

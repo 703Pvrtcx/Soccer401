@@ -32,6 +32,10 @@ const routes: Routes = [
     path: 'court-stats',
     loadChildren: () => import('./page/pages/court-counter/court-stats/court-stats.module').then( m => m.CourtStatsPageModule)
   },
+  {
+    path: 'court-add',
+    loadChildren: () => import('./page/pages/court-counter/court-add/court-add.module').then( m => m.CourtAddPageModule)
+  },
   
 ];
 
